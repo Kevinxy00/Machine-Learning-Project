@@ -1,7 +1,7 @@
 ## **Predict Research Significance Based on Its Abstract**
 
 #### A. Data Collection  
-Raw data were fetched from [Pubmed](https://www.ncbi.nlm.nih.gov/pubmed/) in Medline format with different start date, and were divided into four groups:  
+Raw data were fetched from [Pubmed](https://www.ncbi.nlm.nih.gov/pubmed/) in Medline format with different start date, and were divided into three groups:  
   * **Group 1** includes publications from **20** journals:  
   Nature (from: 2017-01-01),<br>Science (from: 2017-01-01),<br>Cell (from: 2017-01-01),<br>New England Journal of Medicine (nejm) (from: 2015-01-01),<br>Nature Genetics (nat_genet) (from: 2015-01-01),<br>Nature Biotechnology (nat_biotechnol) (from: 2015-01-01),<br>Nature Medicine (nat_med) (from: 2015-01-01).<br>
   Cancer Cell (from: 2015-01-01),<br>

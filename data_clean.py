@@ -3,15 +3,16 @@ import numpy as np
 import spacy
 
 nlp = spacy.load('en')
-blacklist=['the','however','thus','study','moreover','ref','here','role','to','furthermore',
-          '-PRON-','this','that']
+blacklist=['the','study','ref','here','role','to',
+          '-PRON-','this','that','background','introduction','method','conclusion',
+           'find']
 
 #clean the input text
 def clean_words(s):
     doc=nlp(s)
     str_list=[]
     for token in doc:
-        if (not token.is_stop) & (token.pos_!='VERB')&(token.lemma_ not in blacklist):
+        if (not token.is_stop)&(token.pos_!='VERB')&(token.pos_!='ADP')&(token.lemma_ not in blacklist):
             str_list.append(token.lemma_)
     string=' '.join(str_list)
     return string
@@ -34,7 +35,7 @@ def train_test_split(dfs, pct):
     return x_test, y_test, x_train, y_train  # all in pandas dataframe form
 
 if __name__=='__main__': #save splitted data into csv
-    files=['group_1.csv','group_2.csv','group_3.csv']
+    files=['group_0.csv','group_1.csv','group_2.csv']
     dfs=[pd.read_csv(i) for i in files]
     output=['x_test.csv','y_test.csv','x_train.csv', 'y_train.csv']
     i=0

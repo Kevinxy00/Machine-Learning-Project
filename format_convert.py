@@ -40,7 +40,9 @@ def get_institute(pub):
             attrs.append(i)
         attr=';'.join(attrs)
         #remove uninformative words
-        black_list=['school','university', 'department','of', 'the', 'institute']
+        black_list=['school','university', 'department','of', 'the', 'institute', 'division',
+        'center','centre','research','medical','diseases', 'national', 'international','bureau',
+        ]
         attr=[i for i in attr.split() if i.lower() not in black_list]
         attr=' '.join(attr)
         return attr
@@ -55,19 +57,19 @@ def medline_to_csv(f_name, j_name='test'):
     with open(f_name, 'r') as f:
         pubs=f.read().split('PMID-')
         pubs=[i for i in pubs if i!='\n']
-        columns=['pmid','title','abstract']
-        values=[[],[],[]]
+        columns=['pmid','title','abstract','institute']
+        values=[[],[],[],[]]
         for pub in pubs:
             values[0].append(get_pmid(pub))
             values[1].append(get_attr(pub,'TI'))
             values[2].append(get_attr(pub,'AB'))
-            #values[3].append(get_institute(pub)) #optional
+            values[3].append(get_institute(pub)) #optional
         df_dict={columns[i]:values[i] for i in range(len(columns))}
         df=pd.DataFrame(df_dict)
         df['journal']=j_name
-        df=df.loc[:,['pmid','title','abstract','journal']]
+        df=df.loc[:,['pmid','title','abstract','institute','journal']]
     return df
 
 if __name__=='__main__':
     test_file='sample.txt'
-    print(medline_to_csv(test_file))
+    print(medline_to_csv(test_file).head(10))

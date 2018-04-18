@@ -16,8 +16,9 @@ def combine_pubs(path):
         df_list.append(df)
     combined_df=pd.concat(df_list)
     #drop incorrect data
-    combined_df['check']= (combined_df['abstract'].str.len() > 100)
+    combined_df['check']= (combined_df['abstract'].str.len() > 500)
     combined_df=combined_df.loc[combined_df['check'],:]
+    combined_df['abstract']=combined_df['abstract']+combined_df['institute']
     combined_df=combined_df.loc[:,['pmid','title','abstract','journal']]
     combined_df.dropna(inplace=True)
     return combined_df
@@ -64,12 +65,12 @@ def make_bar(df,title,name):
 
 #combine top journals
 if __name__=='__main__':
-    groups=['group_1','group_2','group_3']
+    groups=['0','1','2']
     counts=[]
     df_counts=[]
     i=0
     for group in groups:
-        path='raw_data/'+group+'/'
+        path='raw_data/'+'group_'+group+'/'
         file_name=group+'.csv'
         combined=combine_pubs(path)
         combined['label']=i
@@ -79,9 +80,10 @@ if __name__=='__main__':
         counts.append(count)
         df_counts.append(df_count)
 
-    make_pie(groups,counts,'total_count.jpg')
+    labels=['Group 0','Group 1', 'Group 2']
+    make_pie(labels,counts,'total_count.jpg')
 
-    titles=['Counts of Each Journal in '+i for i in groups]
+    titles=['Counts of Each Journal in '+i for i in labels]
     names=[i+'_counts'+'.jpg' for i in groups]
     for i in range(3):
         make_bar(df_counts[i],titles[i],names[i])

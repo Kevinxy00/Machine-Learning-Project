@@ -10,8 +10,9 @@ from sklearn.svm import SVC
 from lightning.classification import CDClassifier
 
 #word to vector
-tfidf_vectorizer = TfidfVectorizer(analyzer='word', ngram_range=(1, 3))
-hash_vectorizer = HashingVectorizer(analyzer='word', ngram_range=(1, 3),n_features=50000)
+tfidf_vectorizer = TfidfVectorizer(analyzer='word', ngram_range=(1, 1))
+hash_vectorizer = HashingVectorizer(analyzer='word', ngram_range=(1, 1),n_features=50000)
+
 
 #model training
 def model_training(vect, clf):
@@ -31,7 +32,8 @@ def model_training(vect, clf):
 
 if __name__=='__main__':
     clf=LogisticRegression(penalty='l1', C=0.5)
-    clf=CDClassifier(penalty='l1')
+    # clf=CDClassifier(penalty='l1')
+
 
     s=model_training(hash_vectorizer,clf)
     print(s)

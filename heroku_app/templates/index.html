@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- plotly -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <!-- d3js -->
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <title>Manuscript Significance Prediction</title>
+  </head>
+
+<body>
+  <div class="container">
+  <div class="jumbotron jumbotron-fluid">
+    <h2 class="display-4"><center>Manuscript Significance Prediction</center></h1>
+    <p class="lead"></p>
+  </div>
+  </div>
+
+  <div class='container'>
+    <p> Note: This is just a sample model. Its accuracy is significantly lower than the real model due to the memory limit of Heroku.</p>
+    <br>
+    <p> Please copy the abstract and institute's name into the below box:</p>
+  </div>
+
+  <div class='container'>
+    <form method="POST">
+        <input name="text">
+        <input type="submit">
+    </form>
+  </div>
+
+
+</body>
+</html>

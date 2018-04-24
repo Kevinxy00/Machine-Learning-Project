@@ -1,5 +1,2 @@
 stopwords
-word_tokenize
 punkt
-PY3
-tokenizers

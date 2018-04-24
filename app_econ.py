@@ -7,6 +7,7 @@
 from flask import Flask, render_template, request
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
+import os
 import pandas as pd
 import pickle
 from sklearn.feature_extraction.text import HashingVectorizer
@@ -96,4 +97,5 @@ def post_form():
 
 # run app
 if __name__=='__main__':
-    app.run()
+    port = int(os.environ.get('PORT', 5000))	
+    app.run(host='0.0.0.0', port=port)

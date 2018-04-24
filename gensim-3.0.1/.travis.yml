@@ -1,0 +1,22 @@
+sudo: false
+
+cache:
+  apt: true
+  directories:
+  - $HOME/.cache/pip
+  - $HOME/.ccache
+
+dist: trusty
+language: python
+
+
+matrix:
+  include:
+    - env: PYTHON_VERSION="2.7" NUMPY_VERSION="1.11.3" SCIPY_VERSION="0.18.1" ONLY_CODESTYLE="yes"
+    - env: PYTHON_VERSION="2.7" NUMPY_VERSION="1.11.3" SCIPY_VERSION="0.18.1" ONLY_CODESTYLE="no"
+    - env: PYTHON_VERSION="3.5" NUMPY_VERSION="1.11.3" SCIPY_VERSION="0.18.1" ONLY_CODESTYLE="no"
+    - env: PYTHON_VERSION="3.6" NUMPY_VERSION="1.11.3" SCIPY_VERSION="0.18.1" ONLY_CODESTYLE="no"
+
+
+install: source continuous_integration/travis/install.sh
+script: bash continuous_integration/travis/run.sh

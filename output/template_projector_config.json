@@ -1,0 +1,11 @@
+{
+  "embeddings": [
+    {
+      "tensorName": "doc_lda_tensor.tsv",
+      "tensorShape": [
+        1000,
+        50
+      ],
+      "tensorPath": "https://s3.us-east-2.amazonaws.com/www.abstract-embedding-viz.com/doc_lda_tensor.tsv",
+      "metadataPath": "https://s3.us-east-2.amazonaws.com/www.abstract-embedding-viz.com/doc_lda_metadata.tsv"
+    }

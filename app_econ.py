@@ -23,7 +23,7 @@ clf2 = pickle.load(open('logReg_model', 'rb'))
 
 
 # importing x_train data
-X_train = pd.read_csv("X_train_econ.csv", encoding="'iso-8859-1'")
+X_train = pd.read_csv("/raw_data_econ/X_train_econ.csv", encoding="'iso-8859-1'")
 X_train.head()
 
 

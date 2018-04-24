@@ -1,3 +1,4 @@
 stopwords
 word_tokenize
 punkt
+tokenizers

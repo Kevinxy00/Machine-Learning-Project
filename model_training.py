@@ -9,7 +9,8 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.svm import SVC
 from lightning.classification import CDClassifier
 
-#word to vector
+
+#word to vectors
 tfidf_vectorizer = TfidfVectorizer(analyzer='word', ngram_range=(1, 3))
 hash_vectorizer = HashingVectorizer(analyzer='word', ngram_range=(1, 3),n_features=50000)
 

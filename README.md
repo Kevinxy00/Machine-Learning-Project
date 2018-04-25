@@ -1,5 +1,15 @@
 ## **Predict Research Significance Based on Its Abstract**
 
+### * Biological Journals Abstract Significance Predictor: 
+    https://if-pred.herokuapp.com/
+### * Economics Journals Abstract Significance Predictor: 
+    https://econ-abstract-significance.herokuapp.com/
+### * Google Slides Presentation:
+    https://docs.google.com/presentation/d/1BgY_zI7OSDwChVjTQkBQ64Y742lSjjiq8hr2UVL7910/edit?usp=sharing
+### * Other visualizations for the biological journals abstracts:
+    https://s3.us-east-2.amazonaws.com/www.topic-visualization.com/index.html#topic=4&lambda=1&term=
+
+### **1) Biological Journals**
 #### A. Data Collection  
 Raw data were fetched from [Pubmed](https://www.ncbi.nlm.nih.gov/pubmed/) in Medline format with different start date, and were divided into three groups:  
   * **Group 1** includes publications from **20** journals:  
@@ -49,3 +59,42 @@ Oncotarget (from: 2018-01-01),<br>Journal of Molecular Biology (jmb) (from: 2016
 
 #### D. Model Training
 working on it
+
+
+### **2) Economic Journals**
+#### A. Data Collection  
+Web scraped journal abstracts from [ideas.repec.org](https://ideas.repec.org/top/top.journals.simple10.html) 
+for top economic journals in terms of 10 year impact factors. Python and BeautifulSoup were used. 
+The web scrape covered the first page in the article list for 
+each journal, which usually ended up with 200 abstracts per journal. 
+
+Two groups were considered: 
+
+    * Top journals: A sample of the top 20 journal abstracts, including from journals listed twice in the list 
+    as these journals contained abstractrs from a different time period. Includes a mix of latest abstracts along with occasional abstracts 
+    from older time periods (no later than 2000).
+
+    * Not Top journals: A sample of the latest abstracts from a random sample from journals rank 20-100 of 28 non-distinct journal abstracts. 
+
+#### B. Data Munging
+Saved the results into a pandas dataframe, added the top_journals column where top_journals == 1 for true and 0 for false. 
+Cleaned the results for rows lacking abstracts (e.g. “No abstract is available…”) and manually deleted short non-descriptive abstracts. Then 
+removed nonsensical strings (e.g. “type="main" xml:lang="en">) from the rows. 
+Top journals ended up with a total of 4091 rows and Not Top journals ended up with a total of 4063 rows. 
+Then the dataframe was saved as csv files. 
+
+#### C. Feature Engineering
+Using the Natural Language TookKit in python, the data was cleaned of stopwords.
+Using SKLearn in python the dataset was split into a training set and a testing set, with 75% training and 25% testing.
+
+
+#### D. Model Training
+After using the Hash Vectorizor in SKLearn to transform abstracts into a matrix of token occurrences, I fitted the data to a logistic regression model, with a mean accuracy of 70.87% on the testing data. 
+
+![](raw_data_econ/Top_econ.png)<br>
+![](raw_data_econ/NotTop_econ.png)<br>
+
+This was originally only a preliminary model but after fitting the data to multiple other models, we could not find another that performed better (see ML_Econ_bb.ipynb for more details).
+
+#### E. Website
+Created a simple webpage for users to input abstracts using Flask in python and deployed to Heroku. The html file can be found under index_econ.html in the templates folder, where the flask app can find it. The app itself is under app_econ.py. The app imports the saved (pickled) trained logistic regression model and when the submit button is clicked, hashes any user input texts and returns a prediction using the imported model.  

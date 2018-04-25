@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+
+    <!-- style sheet -->
+    <!--link rel="stylesheet" type="text/css" href="../static/econ_styles.css"--> 
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='econ_styles.css')}}">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- plotly -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <!-- d3js -->
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <title>Significance Prediction</title>
+  </head>
+
+<body>
+  <div class="container">
+  <div class="jumbotron jumbotron-fluid">
+    <h2 class="display-4"><center> Biology Journal Abstract Significance Prediction</center></h1>
+    <p class="lead"></p>
+  </div>
+  </div>
+
+  <div class='container'>
+    <p> Note: This is just a sample model. Its accuracy is significantly lower than the real model due to the memory limit of Heroku.</p>
+    <br>
+    <p> Please copy the abstract and institute's name into the below box:</p>
+  </div>
+
+  <div class='container'>
+    <form method="POST">
+        <textarea id="textbox_bio" name="text"></textarea>
+        <br>
+        <input type="submit">
+    </form>
+    <br>
+  </div>
+
+  <div class="link-predictor">
+    <a href="/predict-econ">
+      Link to the Economic Journal Abstract Significance Predictor
+    </a>
+  </div>
+  
+  <div class="github-link">
+    <a href="https://github.com/Kevinxy00/Machine-Learning-Project">
+      Link to the github repo here.
+    </a>
+  </div>
+
+</body>
+</html>
